@@ -17,11 +17,8 @@
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    // const code = params.get('code');
-    // const state = params.get('state');
-
-      const code = 'asdasdasdas;
-    const state = 'DCEeFWf45A53sdfKef424';
+    const code = params.get('code');
+    const state = params.get('state'); 
 
     if (code && state) {
       const redirectUrl = `demotesting://auth/linkedin?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`;
