@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Redirecting...</title></head>
+  <body>
+    <script>
+      const code = new URLSearchParams(window.location.search).get('code');
+      const state = new URLSearchParams(window.location.search).get('state');
+      // Redirect to your Flutter app
+      window.location.href = `demotesting://auth/linkedin?code=${code}&state=${state}`;
+    </script>
+    Redirecting...
+  </body>
+</html>
