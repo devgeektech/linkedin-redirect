@@ -1,41 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redirecting...</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 50px;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-  </style>
-</head>
-<body>
-  <h2>Redirecting...</h2>
-  <p>If you are not redirected automatically, please check your app.</p>
-
-  <script>
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      const code = params.get('code');
-      const state = params.get('state');
-
-      if (code && state) {
-        // Safely encode values for use in URI
-        const redirectUrl = `demotesting://auth/linkedin?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`;
-        window.location.href = redirectUrl;
-      } else {
-        document.body.innerHTML = `
-          <h2>Error</h2>
-          <p>Missing <code>code</code> or <code>state</code> parameter.</p>
-          <p>Please try logging in again.</p>
-        `;
-      }
-    })();
-  </script>
-</body>
+<html>
+  <head><title>Redirecting...</title></head>
+  <body>
+    <script>
+      const code = new URLSearchParams(window.location.search).get('code');
+      const state = new URLSearchParams(window.location.search).get('state');
+      window.location.href = `demotesting://auth/linkedin?code=${code}&state=${state}`;
+    </script>
+    Redirecting...
+  </body>
 </html>
+
+
+is this correct or complete code 
