@@ -1,15 +1,42 @@
 <!DOCTYPE html>
-<html>
-  <head><title>Redirecting...</title></head>
-  <body>
-    <script>
-      const code = new URLSearchParams(window.location.search).get('code');
-      const state = new URLSearchParams(window.location.search).get('state');
-      window.location.href = `demotesting://auth/linkedin?code=${code}&state=${state}`;
-    </script>
-    Redirecting...
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Redirecting to app...</h2>
+  <p>If you're not redirected automatically, <a id="manualLink">click here</a>.</p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    const state = params.get('state');
+
+    if (code && state) {
+      const redirectUrl = `demotesting://auth/linkedin?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`;
+
+      // Fallback clickable link
+      document.getElementById('manualLink').href = redirectUrl;
+
+      // Try to auto redirect
+      setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 100); // Slight delay improves compatibility on some mobile browsers
+    } else {
+      document.body.innerHTML = `
+        <h2>Missing Parameters</h2>
+        <p>The LinkedIn login process did not return valid data.</p>
+        <p>Please go back and try again.</p>
+      `;
+    }
+  </script>
+</body>
 </html>
-
-
-is this correct or complete code 
